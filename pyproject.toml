@@ -2,11 +2,11 @@
 name = "python-repository-template"
 version = "0.1.0"
 description = ""
-authors = ["tokane888 <tokane888@gmail.com>"]   # TODO
+authors = ["tokane888 <tokane888@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"    # TODO
+python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.2"

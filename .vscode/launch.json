@@ -9,7 +9,7 @@
             "type": "debugpy",
             "request": "launch",    // launch: 新規にプロセスを立ち上げる場合, attach: ブラウザ等の既存プロセス周りのデバッグを行う場合
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/main.py",    // TODO: デバッグ対象ファイル名は必要に応じて調整
+            "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",            // terminalにデバッグログ出力
             "justMyCode": true      // ライブラリの中身まではデバッグしない
         }
