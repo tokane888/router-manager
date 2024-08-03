@@ -1,0 +1,18 @@
+name: Github workflow lint
+on:
+    push:
+        paths: ['.github/workflows/*.yml']
+# CI実行時にコミットが追加された場合、高速化のため古いコミットに対するCIは中断
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}-github-workflow-lint
+    cancel-in-progress: true
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5  # デフォルトは360分なので、コスト削減を考慮して念の為設定
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Lint with actionlint
+              run: |
+                docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest

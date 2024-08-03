@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "charliermarsh.ruff",       // rust製の高速なlinter, formatter
+    "ms-python.python",         // 他linter等との連携, debug等
+    "ms-python.vscode-pylance", // python language server。定義へのjump等に必要
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

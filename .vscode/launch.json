@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: main.py",
+            "type": "debugpy",
+            "request": "launch",    // launch: 新規にプロセスを立ち上げる場合, attach: ブラウザ等の既存プロセス周りのデバッグを行う場合
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/main.py",    // TODO: デバッグ対象ファイル名は必要に応じて調整
+            "console": "integratedTerminal",            // terminalにデバッグログ出力
+            "justMyCode": true      // ライブラリの中身まではデバッグしない
+        }
+    ]
+}
