@@ -3,11 +3,8 @@ updates:
   - package-ecosystem: github-actions
     directory: / # パッケージマニフェスト配置先ディレクトリ。ただしGithub actionのみ固定で"/"
     schedule:
-      interval: daily
+      interval: monthly
   - package-ecosystem: pip
     directory: ./
     schedule:
-      interval: daily
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+      interval: monthly
