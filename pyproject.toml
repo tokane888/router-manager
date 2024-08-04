@@ -21,7 +21,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.ruff]
 # ruff(linter/formatter)の有効ルール。"ALL"は警告が増えすぎたので断念。
 # ルール一覧: https://docs.astral.sh/ruff/rules/
-lint.select = ["E", "F", "I", "N", "UP", "W"]
+lint.select = ["B", "E", "F", "I", "N", "UP", "W"]
 
 # linter対象から除外するディレクトリ。高速化のために指定
 exclude=[
