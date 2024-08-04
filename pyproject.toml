@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-repository-template"
+name = "router-management-api"
 version = "0.1.0"
 description = ""
 authors = ["tokane888 <tokane888@gmail.com>"]
