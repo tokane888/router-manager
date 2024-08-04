@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "router-management-api"
+name = "router-manager"
 version = "0.1.0"
 description = ""
 authors = ["tokane888 <tokane888@gmail.com>"]
