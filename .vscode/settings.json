@@ -32,5 +32,9 @@
   "python.testing.pytestArgs": [
     "-s",
     "tests"
+  ],
+  "cSpell.words": [
+    "fastapi",
+    "uvicorn"
   ]
 }
