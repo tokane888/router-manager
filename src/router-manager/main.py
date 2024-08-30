@@ -6,6 +6,7 @@ import subprocess
 from datetime import datetime
 from typing import Optional
 
+import dns.resolver  # type: ignore
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.responses import JSONResponse
 
@@ -63,7 +64,10 @@ def block_ip(domain: str) -> Optional[str]:
 
     try:
         # ドメインに関連するすべてのIPアドレスを取得
-        _, _, ip_addresses = socket.gethostbyname_ex(domain)
+        resolver = dns.resolver.Resolver()
+        resolver.nameservers = ["8.8.8.8"]
+        answer = resolver.resolve(domain)
+        ip_addresses = [ip.to_text() for ip in answer]
         blocked_ips = []
 
         for ip in ip_addresses:
@@ -80,6 +84,7 @@ def block_ip(domain: str) -> Optional[str]:
         subprocess.run(
             ["iptables-save", ">", "/etc/iptables/rules.v4"], shell=True, check=True
         )
+        print(f"ip block rule added: {ip_addresses}")
 
         return None
 
