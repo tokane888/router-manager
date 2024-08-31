@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Optional
 
 import dns.resolver  # type: ignore
-from fastapi import APIRouter, FastAPI, Query
+from fastapi import APIRouter, FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
@@ -15,6 +15,9 @@ router = APIRouter(prefix="/v1")
 
 DNSMASQ_HOSTS_FILE = "/etc/dnsmasq.hosts"
 DNSMASQ_D_FILE = "/etc/dnsmasq.d/dnsmasq.hosts"
+
+SSH_BOOT_RESERVATION_FILE = "/var/lib/router-manager/ssh_boot_reservation"
+SSH_BOOT_RESERVATION_DIR = "/var/lib/router-manager/"
 
 
 def is_iptables_rule_exist(ip: str) -> bool:
@@ -110,6 +113,23 @@ async def block_domain_handler(domain: str, ip_block: bool = Query(False)):
     if ip_block:
         message += f"{domain} IP is blocked also."
     return {"message": message}
+
+
+@router.post("/ssh/boot_reservation")
+async def ssh_boot_reservation():
+    current_day = datetime.now().strftime("%A")
+    allowed_days = {"Tuesday", "Wednesday", "Thursday", "Friday"}
+
+    if current_day in allowed_days:
+        if not os.path.exists(SSH_BOOT_RESERVATION_DIR):
+            os.makedirs(SSH_BOOT_RESERVATION_DIR)
+        open(SSH_BOOT_RESERVATION_FILE, "a").close()
+        return {"message": "SSH boot reservation file created."}
+    else:
+        raise HTTPException(
+            status_code=403,
+            detail="SSH boot reservation is only allowed on Tuesday to Friday.",
+        )
 
 
 app.include_router(router)
