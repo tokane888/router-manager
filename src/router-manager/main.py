@@ -29,24 +29,26 @@ def is_iptables_rule_exist(ip: str) -> bool:
 
 
 def block_domain(domain: str) -> Optional[str]:
-    if os.path.exists(DNSMASQ_D_FILE):
-        with open(DNSMASQ_D_FILE) as file:
+    if os.path.exists(DNSMASQ_HOSTS_FILE):
+        with open(DNSMASQ_HOSTS_FILE) as file:
             pattern = r"/([^/]+)/"
             lines = file.readlines()
             for line in lines:
                 match = re.search(pattern, line)
                 if match is None:
-                    return f"failed to parse dnsmasq setting file({DNSMASQ_D_FILE})."
+                    return (
+                        f"failed to parse dnsmasq setting file({DNSMASQ_HOSTS_FILE})."
+                    )
                 line_domain = match.group(1)
                 if line_domain == domain:
                     # block済み
                     return None
 
-    with open(DNSMASQ_D_FILE, "a") as file:
+    with open(DNSMASQ_HOSTS_FILE, "a") as file:
         file.write(f"address=/{domain}/\n")
         print(f"added {domain} to block list")
 
-    shutil.copy(DNSMASQ_D_FILE, DNSMASQ_HOSTS_FILE)
+    shutil.copy(DNSMASQ_HOSTS_FILE, DNSMASQ_D_FILE)
 
     subprocess.run(["systemctl", "restart", "dnsmasq"], check=True)
 
