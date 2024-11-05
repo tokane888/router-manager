@@ -16,7 +16,7 @@ dnspython = "^2.7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
-ruff = "^0.6.8"
+ruff = "^0.7.2"
 pytest-cov = "^6.0.0"
 
 [build-system]
