@@ -11,7 +11,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = "^0.115.4"
-uvicorn = "^0.32.0"
+uvicorn = "^0.32.1"
 dnspython = "^2.7.0"
 
 [tool.poetry.group.dev.dependencies]
