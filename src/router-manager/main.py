@@ -106,6 +106,7 @@ async def block_domain_handler(domain: str, ip_block: bool = Query(False)):
     if error_message is not None:
         return JSONResponse(status_code=500, content={"message": error_message})
 
+    # TODO: nft非対応なので調整
     if ip_block:
         error_message = block_ip(domain)
         if error_message is not None:
