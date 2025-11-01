@@ -10,7 +10,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = "^0.116.1"
+fastapi = "^0.120.4"
 uvicorn = "^0.38.0"
 dnspython = "^2.8.0"
 
