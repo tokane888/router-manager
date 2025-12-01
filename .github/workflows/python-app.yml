@@ -10,7 +10,7 @@ jobs:
         timeout-minutes: 5  # デフォルトは360分なので、コスト削減を考慮して念の為設定
         steps:
             - name: Checkout
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
             - name: Setup Python
               uses: actions/setup-python@v6
               with:
